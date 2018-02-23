@@ -25,7 +25,7 @@ const styles = {
     height: 60,
     borderRadius: 5,
     paddingTop: 5,
-    shadowColor: 'black',
+    shadowColor: '#000',
     shadowOffset: {
       width: 0,
       height: 2
