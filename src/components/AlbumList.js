@@ -2,33 +2,48 @@ import React from 'react';
 import { View, Text } from 'react-native';
 // import axios from 'axios';
 
+import AlbumDetail from './AlbumDetail';
+
 class AlbumList extends React.Component {
   state = {
-    movies: []
+    albums: []
   };
 
   componentWillMount() {
     fetch('http://rallycoding.herokuapp.com/api/music_albums')
       .then(res => res.json())
       .then(resData => {
-        console.log(resData);
-        this.setState({ movies: resData.movies });
+        this.setState({ albums: resData });
       })
-      .catch(err => console.log(err));
+      .catch(err => console.log(`Api Request Albums Failed ${err}`));
 
     // axios
     //   .get('https://rallycoding.herokuapp.com/api/music_albums')
     //   .then(res => console.log(res))
-    //   .catch(err => console.log(err));
+    //   .catch(err => console.log(`Api Request Albums Failed ${err}`));
   }
 
+  // renderAlbums() {
+  //   return this.state.albums.map(album => <AlbumDetail key={album.title} album={album} />);
+  // }
+
   render() {
+    const { albums } = this.state;
+    const { hello } = styles;
+
     return (
-      <View>
-        <Text>Album List!!</Text>
+      <View style={hello}>
+        {albums.map(album => <AlbumDetail key={album.title} album={album} />)}
       </View>
     );
   }
 }
+
+const styles = {
+  hello: {
+    justifyContent: 'center',
+    alignItems: 'center'
+  }
+};
 
 export default AlbumList;
