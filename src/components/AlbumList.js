@@ -29,21 +29,9 @@ class AlbumList extends React.Component {
 
   render() {
     const { albums } = this.state;
-    const { hello } = styles;
 
-    return (
-      <View style={hello}>
-        {albums.map(album => <AlbumDetail key={album.title} album={album} />)}
-      </View>
-    );
+    return <View>{albums.map(album => <AlbumDetail key={album.title} album={album} />)}</View>;
   }
 }
-
-const styles = {
-  hello: {
-    justifyContent: 'center',
-    alignItems: 'center'
-  }
-};
 
 export default AlbumList;
